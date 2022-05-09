@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace CRM
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для PersonalOfficeWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class PersonalOfficeWindow : Window
     {
-        public Window1()
+        public PersonalOfficeWindow()
         {
             InitializeComponent();
         }

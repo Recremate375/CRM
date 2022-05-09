@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace CRM
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для AddElement.xaml
     /// </summary>
-    public partial class Authorization : Window
+    public partial class AddElement : Window
     {
-        public Authorization()
+        public AddElement()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
