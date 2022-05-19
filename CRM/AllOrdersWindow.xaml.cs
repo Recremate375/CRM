@@ -4,24 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
+using System.Data.SqlClient;
 namespace CRM
 {
-    /// <summary>
-    /// Логика взаимодействия для AllOrdersWindow.xaml
-    /// </summary>
+    enum RowState
+    {
+        Existed,
+        New,
+        Modified,
+        ModifiedNew,
+        Deleted
+    }
+
     public partial class AllOrdersWindow : Window
     {
+        DataBase _dataBase = new DataBase();
+        int selectedRow;
         public AllOrdersWindow()
         {
             InitializeComponent();
+
         }
 
         private void Autorization_Click(object sender, RoutedEventArgs e)
@@ -31,6 +33,10 @@ namespace CRM
             //Authorization authorizationWindow = new Authorization();
             //authorizationWindow.Show();
         }
+        private void CreateColumns()
+        {
+
+        }
         private void Authorization_Loaded(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
@@ -39,11 +45,13 @@ namespace CRM
         {
             AddElement addElement = new AddElement();
             addElement.Show();
+            this.Close();
         }
         private void Editing_Order_click(object sender, RoutedEventArgs e)
         {
             EditingWindow editingWindow = new EditingWindow();
             editingWindow.Show();
+            this.Close();
         }
     }
 }

@@ -43,13 +43,13 @@
         <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Заказы"/>
         <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="SkyBlue">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№"/>
-                <DataGridTextColumn Header="Продукция"/>
-                <DataGridTextColumn Header="Заказчик" Width="0.4*"/>
-                <DataGridTextColumn Header="Дата заказа"/>
-                <DataGridTextColumn Header="Отдел" Width="0.4*"/>
-                <DataGridTextColumn Header="Объём производства"/>
-                <DataGridTextColumn Header="Комментарий" Width="*"/>
+                <DataGridTextColumn Header="№" x:Name="Number"/>
+                <DataGridTextColumn Header="Продукция" x:Name="Product"/>
+                <DataGridTextColumn Header="Заказчик" Width="0.4*" x:Name="Client"/>
+                <DataGridTextColumn Header="Дата заказа" x:Name="Orders Date"/>
+                <DataGridTextColumn Header="Отдел" Width="0.4*" x:Name="Department"/>
+                <DataGridTextColumn Header="Объём производства" x:Name="ProductAmount"/>
+                <DataGridTextColumn Header="Комментарий" Width="*" x:Name="Comment"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Column="1" Grid.Row="5" Height="25" Width="135" Content="Добавить заказ" Click="Add_Order_Click"/>
