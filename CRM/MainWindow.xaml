@@ -5,56 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM"
         mc:Ignorable="d"
-        Title="Окно заказов" Height="450" Width="800" Background="SkyBlue">
-    <Grid>
+        Title="Окно авторизации" Height="450" Width="800" Background="SkyBlue">
+    <Grid Background="SkyBlue">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.8*"/>
-            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.16*"/>
-            <RowDefinition Height="0.16*"/>
-            <RowDefinition Height="0.16*"/>
-            <RowDefinition Height="0.16*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.7*"/>
             <RowDefinition/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.9*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Background="SteelBlue">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.16*"/>
-                <RowDefinition Height="0.16*"/>
-                <RowDefinition Height="0.16*"/>
-                <RowDefinition Height="0.16*"/>
-                <RowDefinition/>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="0.2*"/>
-            </Grid.RowDefinitions>
-            <Button Grid.Column="0" Grid.Row="0" Content="Все заказы" Background="SteelBlue"/>
-            <Button Grid.Column="0" Grid.Row="1" Content="Продукция" Background="SteelBlue"/>
-            <Button Grid.Column="0" Grid.Row="2" Content="Заказчики" Background="SteelBlue"/>
-            <Button Grid.Column="0" Grid.Row="3" Content="Статистика" Background="SteelBlue"/>
-            <Button x:Name="Autorization" Click="Autorization_Click" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Личный кабинет" Background="SteelBlue"/>
-            <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Выход"/>
-        </Grid>
-        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Заказы"/>
-        <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="SkyBlue">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="№"/>
-                <DataGridTextColumn Header="Продукция"/>
-                <DataGridTextColumn Header="Заказчик"/>
-                <DataGridTextColumn Header="Дата заказа"/>
-                <DataGridTextColumn Header="Отдел"/>
-                <DataGridTextColumn Header="Объём производства"/>
-                <DataGridTextColumn Header="Комментарий"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Grid.Column="1" Grid.Row="5" Height="25" Width="135" Content="Добавить заказ" ></Button>
-        <Button Grid.Column="2" Grid.Row="5" Height="25" Width="135" Content="Редактировать заказ"></Button>
-        <Button Grid.Column="1" Grid.Row="6" Height="25" Width="135" Content="Получить отчёт"></Button>
-        <Button Grid.Column="2" Grid.Row="6" Height="25" Width="135" Content="Посмотреть статистику"></Button>
+        <TextBox x:Name="textBox_login" Grid.Row="1" Grid.Column="1" Height="30" VerticalContentAlignment="Top" Margin="0,30,0,0"></TextBox>
+        <Label Content="Авторизация" FontSize="20" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <Label Content="Логин" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,30"/>
+        <Button Content="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Background="SkyBlue" BorderBrush="SkyBlue"/>
+        <Button Content="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="2" Background="SkyBlue" BorderBrush="SkyBlue" Click="RegistrationClick"/>
+        <Label Content="Пароль" Grid.Row="2" Grid.Column="1"/>
+        <PasswordBox x:Name="password" Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="0,30,0,0"></PasswordBox>
+        <Button Content="Войти" Grid.Column="1" Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="0,30,0,0" HorizontalAlignment="Center" Click="SingInClick"/>
+
     </Grid>
 </Window>

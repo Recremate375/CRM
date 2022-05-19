@@ -18,3 +18,34 @@ D:\My Project's\CRM\CRM\obj\Debug\Authorization.g.cs
 D:\My Project's\CRM\CRM\obj\Debug\Authorization.baml
 D:\My Project's\CRM\CRM\obj\Debug\Window1.g.cs
 D:\My Project's\CRM\CRM\obj\Debug\Window1.baml
+D:\projects\CRM\CRM\bin\Debug\CRM.exe.config
+D:\projects\CRM\CRM\bin\Debug\CRM.exe
+D:\projects\CRM\CRM\bin\Debug\CRM.pdb
+D:\projects\CRM\CRM\obj\Debug\CRM.csproj.AssemblyReference.cache
+D:\projects\CRM\CRM\obj\Debug\CRM.csproj.SuggestedBindingRedirects.cache
+D:\projects\CRM\CRM\obj\Debug\MainWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\App.g.cs
+D:\projects\CRM\CRM\obj\Debug\CRM_MarkupCompile.cache
+D:\projects\CRM\CRM\obj\Debug\CRM_MarkupCompile.lref
+D:\projects\CRM\CRM\obj\Debug\MainWindow.baml
+D:\projects\CRM\CRM\obj\Debug\CRM.g.resources
+D:\projects\CRM\CRM\obj\Debug\CRM.Properties.Resources.resources
+D:\projects\CRM\CRM\obj\Debug\CRM.csproj.GenerateResource.cache
+D:\projects\CRM\CRM\obj\Debug\CRM.csproj.CoreCompileInputs.cache
+D:\projects\CRM\CRM\obj\Debug\CRM.exe
+D:\projects\CRM\CRM\obj\Debug\CRM.pdb
+D:\projects\CRM\CRM\obj\Debug\AddElement.g.cs
+D:\projects\CRM\CRM\obj\Debug\AddElement.baml
+D:\projects\CRM\CRM\obj\Debug\EditingWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\EditingWindow.baml
+D:\projects\CRM\CRM\obj\Debug\PersonalOfficeWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\PersonalOfficeWindow.baml
+D:\projects\CRM\CRM\obj\Debug\AllOrdersWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\AllOrdersWindow.baml
+D:\projects\CRM\CRM\obj\Debug\RegistrationWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\RegistrationWindow.baml
+D:\projects\CRM\CRM\bin\Debug\EntityFramework.dll
+D:\projects\CRM\CRM\bin\Debug\EntityFramework.SqlServer.dll
+D:\projects\CRM\CRM\bin\Debug\EntityFramework.xml
+D:\projects\CRM\CRM\bin\Debug\EntityFramework.SqlServer.xml
+D:\projects\CRM\CRM\obj\Debug\CRM.csproj.CopyComplete

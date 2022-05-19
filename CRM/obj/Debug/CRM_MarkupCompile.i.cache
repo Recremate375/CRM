@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\My Project's\CRM\CRM\obj\Debug\
+D:\projects\CRM\CRM\obj\Debug\
 CRM
 none
 false
 DEBUG;TRACE
-D:\My Project's\CRM\CRM\App.xaml
-3-298225027
+D:\projects\CRM\CRM\App.xaml
+61555021401
 
-9-1406899350
-13-1310406943
-MainWindow.xaml;Authorization.xaml;Window1.xaml;
+13-174031216
+171981568571
+AllOrdersWindow.xaml;EditingWindow.xaml;MainWindow.xaml;PersonalOfficeWindow.xaml;AddElement.xaml;RegistrationWindow.xaml;
 
 True
 

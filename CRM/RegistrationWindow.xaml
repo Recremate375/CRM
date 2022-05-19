@@ -1,0 +1,43 @@
+﻿<Window x:Class="CRM.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM"
+        mc:Ignorable="d"
+        Title="RegistrationWindow" Height="550" Width="800" Background="SkyBlue">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.7*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Регистрация" FontSize="20" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <Label Content="Логин" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,15"/>
+        <TextBox x:Name="textBox_login" Grid.Row="1" Grid.Column="1" Height="30" VerticalAlignment="Bottom"  ></TextBox>
+        <Label Content="Авторизация" HorizontalAlignment="Center" FontSize="20"/>
+        <Label Content="Регистрация" HorizontalAlignment="Center" FontSize="20" Grid.Column="2"/>
+        <Label Content="Пароль" Grid.Row="2" Grid.Column="1"/>
+        <PasswordBox x:Name="password" Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="0,30,0,0"></PasswordBox>
+        <Label Content="Повторите пароль" Grid.Row="3" Grid.Column="1"/>
+        <PasswordBox x:Name="confirmed_password" Grid.Row="3" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="0,30,0,0"></PasswordBox>
+        <Label Content="ФИО" Grid.Row="4" Grid.Column="1"/>
+        <TextBox x:Name="fio" Grid.Row="4" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="0,30,0,0"></TextBox>
+        <Label Content="Отдел" Grid.Row="5" Grid.Column="1"/>
+        <ComboBox x:Name="departamet" Grid.Row="5" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="0,30,0,0"></ComboBox>
+        <Label Content="Должность" Grid.Row="6" Grid.Column="1"/>
+        <TextBox x:Name="position" Grid.Row="6" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="0,30,0,0"></TextBox>
+        <Button Content="Зарегистрироваться" Grid.Column="1" Grid.Row="7" Height="30" Width="150" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center"
+                Click="Registrarion_Click"/>
+    </Grid>
+</Window>
