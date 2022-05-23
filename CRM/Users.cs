@@ -12,20 +12,15 @@ namespace CRM
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class Users
     {
-        public System.Guid Order_ID { get; set; }
-        public Nullable<System.Guid> Product_ID { get; set; }
-        public Nullable<int> Production_amount { get; set; }
-        public Nullable<System.Guid> Client_ID { get; set; }
-        public Nullable<System.Guid> Departament_ID { get; set; }
-        public Nullable<System.DateTime> Order_date { get; set; }
-        public Nullable<System.DateTime> Date_of_completion { get; set; }
-        public string Order_Status { get; set; }
-        public string Comment { get; set; }
+        public string UserLogin { get; set; }
+        public string UserPassword { get; set; }
+        public string UserName { get; set; }
+        public System.Guid UserID { get; set; }
+        public Nullable<System.Guid> Userdepartament { get; set; }
+        public string Userposition { get; set; }
     
-        public virtual Clients Clients { get; set; }
         public virtual Departments Departments { get; set; }
-        public virtual Products Products { get; set; }
     }
 }

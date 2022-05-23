@@ -49,3 +49,4 @@ D:\projects\CRM\CRM\bin\Debug\EntityFramework.SqlServer.dll
 D:\projects\CRM\CRM\bin\Debug\EntityFramework.xml
 D:\projects\CRM\CRM\bin\Debug\EntityFramework.SqlServer.xml
 D:\projects\CRM\CRM\obj\Debug\CRM.csproj.CopyComplete
+D:\projects\CRM\CRM\obj\Debug\CRM_Content.g.cs

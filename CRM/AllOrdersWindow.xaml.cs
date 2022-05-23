@@ -19,11 +19,11 @@ namespace CRM
     public partial class AllOrdersWindow : Window
     {
         DataBase _dataBase = new DataBase();
-        int selectedRow;
+
         public AllOrdersWindow()
         {
             InitializeComponent();
-
+            dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList();
         }
 
         private void Autorization_Click(object sender, RoutedEventArgs e)
@@ -33,10 +33,7 @@ namespace CRM
             //Authorization authorizationWindow = new Authorization();
             //authorizationWindow.Show();
         }
-        private void CreateColumns()
-        {
 
-        }
         private void Authorization_Loaded(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
