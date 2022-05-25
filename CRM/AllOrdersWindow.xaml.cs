@@ -5,33 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.SqlClient;
+using System.Windows.Controls;
+
 namespace CRM
 {
-    enum RowState
-    {
-        Existed,
-        New,
-        Modified,
-        ModifiedNew,
-        Deleted
-    }
 
     public partial class AllOrdersWindow : Window
     {
-        DataBase _dataBase = new DataBase();
-
         public AllOrdersWindow()
         {
             InitializeComponent();
-            dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList();
         }
 
         private void Autorization_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationWindow registrationWindow = new RegistrationWindow();
-            registrationWindow.Show();
-            //Authorization authorizationWindow = new Authorization();
-            //authorizationWindow.Show();
+            PersonalOfficeWindow personalOffice = new PersonalOfficeWindow();
+            personalOffice.Show();
+            this.Close();
         }
 
         private void Authorization_Loaded(object sender, RoutedEventArgs e)
@@ -44,11 +34,41 @@ namespace CRM
             addElement.Show();
             this.Close();
         }
-        private void Editing_Order_click(object sender, RoutedEventArgs e)
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            EditingWindow editingWindow = new EditingWindow();
-            editingWindow.Show();
+            EditElement changeElement = new EditElement((sender as Button).DataContext as Orders);
+            changeElement.Show();
             this.Close();
         }
+
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                OrdersdbEntities.GetContext().ChangeTracker.Entries().ToList().
+                    ForEach(p => p.Reload());
+                dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList(); 
+            }
+        }
+        private void Products_Click(object sender, RoutedEventArgs e)
+        {
+            ProductsWindow productsWindow = new ProductsWindow();
+            productsWindow.Show();
+            this.Close();
+        }
+
+        private void Clients_Click(object sender, RoutedEventArgs e)
+        {
+            ClientsWindow clients = new ClientsWindow();
+            clients.Show();
+            this.Close();
+        }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            return;
+        }
+
     }
 }

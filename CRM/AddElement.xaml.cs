@@ -21,31 +21,13 @@ namespace CRM
     public partial class AddElement : Window
     {
         DataBase _dataBase = new DataBase();
+        public Orders _orders = new Orders();
         public AddElement()
         {
             InitializeComponent();
-            string productDataString = $"Select * from [dbo].[Products]";
-            string departmentDataString = $"Select * from [dbo].[Departments]";
-            SqlCommand command = new SqlCommand(productDataString, _dataBase.getConnection());
-            _dataBase.openConnection();
-            SqlDataReader sqlDataReader = command.ExecuteReader();
-            int counter = 0;
-            while (sqlDataReader.Read())
-            {
-                _productType.Items.Add(sqlDataReader.GetString(1));
-                counter++;
-            }
-            _dataBase.closeConnection();
-            _dataBase.openConnection();
-            command = new SqlCommand(departmentDataString, _dataBase.getConnection());
-            sqlDataReader = command.ExecuteReader();
-            counter = 0;
-            while (sqlDataReader.Read())
-            {
-                _departament.Items.Add(sqlDataReader.GetString(1));
-                counter++;
-            }
-            _dataBase.closeConnection();
+            DataContext = _orders;
+            _productType.ItemsSource = OrdersdbEntities.GetContext().Products.ToList();
+            _departament.ItemsSource = OrdersdbEntities.GetContext().Departments.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -105,16 +87,16 @@ namespace CRM
                                 _dataBase.closeConnection();
                                 if (_address.Text.Length > 0)
                                 {
-                                    string addOrdersString = $"insert into [dbo].[Orders] ([Order ID], [Product ID], [Client ID], [Departament ID], [Order date], [Date of completion])" +
-                                        $" values(NEWID(), '{productsId}', '{contactId}', '{departmentId}', '{_orderData}', '{_completedData}')";
+                                    string addOrdersString = $"insert into [dbo].[Orders] ([Order ID], [Product ID], [Client ID], [Departament ID], [Order date], [Date of completion], [Production amount])" +
+                                        $" values(NEWID(), '{productsId}', '{contactId}', '{departmentId}', '{_orderData}', '{_completedData}', '{_productionAmount}')";
                                     SqlCommand command = new SqlCommand(addOrdersString, _dataBase.getConnection());
                                     _dataBase.openConnection();
                                     if (command.ExecuteNonQuery() == 1)
                                     {
                                         MessageBox.Show("Заказ успешно добавлен!");
-                                        this.Close();
                                         AllOrdersWindow allOrdersWindow = new AllOrdersWindow();
                                         allOrdersWindow.Show();
+                                        this.Close();
                                     }
                                     else MessageBox.Show("Заказ не добавлен!");
                                     _dataBase.closeConnection();

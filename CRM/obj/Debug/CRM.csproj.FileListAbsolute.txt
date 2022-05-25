@@ -36,8 +36,6 @@ D:\projects\CRM\CRM\obj\Debug\CRM.exe
 D:\projects\CRM\CRM\obj\Debug\CRM.pdb
 D:\projects\CRM\CRM\obj\Debug\AddElement.g.cs
 D:\projects\CRM\CRM\obj\Debug\AddElement.baml
-D:\projects\CRM\CRM\obj\Debug\EditingWindow.g.cs
-D:\projects\CRM\CRM\obj\Debug\EditingWindow.baml
 D:\projects\CRM\CRM\obj\Debug\PersonalOfficeWindow.g.cs
 D:\projects\CRM\CRM\obj\Debug\PersonalOfficeWindow.baml
 D:\projects\CRM\CRM\obj\Debug\AllOrdersWindow.g.cs
@@ -50,3 +48,11 @@ D:\projects\CRM\CRM\bin\Debug\EntityFramework.xml
 D:\projects\CRM\CRM\bin\Debug\EntityFramework.SqlServer.xml
 D:\projects\CRM\CRM\obj\Debug\CRM.csproj.CopyComplete
 D:\projects\CRM\CRM\obj\Debug\CRM_Content.g.cs
+D:\projects\CRM\CRM\obj\Debug\EditElement.g.cs
+D:\projects\CRM\CRM\obj\Debug\EditElement.baml
+D:\projects\CRM\CRM\obj\Debug\ProductsWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\ProductsWindow.baml
+D:\projects\CRM\CRM\obj\Debug\ClientsWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\ClientsWindow.baml
+D:\projects\CRM\CRM\obj\Debug\StatisticsWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\StatisticsWindow.baml
