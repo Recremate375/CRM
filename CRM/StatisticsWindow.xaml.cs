@@ -29,7 +29,8 @@ namespace CRM
             int numberOfAdded = 0;
             int numberOfWorking = 0;
             int numberOfEnded = 0;
-
+            DateTime firstdate = Convert.ToDateTime(_firstDate.ToString());
+            DateTime secondDate = Convert.ToDateTime(_secondDate.ToString());
             Guid firstStage = new Guid(), secondStage = new Guid(), thirdStage = new Guid();
             var list = OrdersdbEntities.GetContext().OrderLifeCycle.Where(o => o.Name == "Добавлен").ToList();
             foreach (var item in list)
@@ -41,10 +42,10 @@ namespace CRM
             foreach(var item in list2)
                 thirdStage = item.OrderLifeCycleID;
             var orders = OrdersdbEntities.GetContext().Orders.
-                Where(o => o.Order_date >= Convert.ToDateTime(_firstDate.Text) 
-                || o.Date_of_completion >= Convert.ToDateTime(_firstDate.Text)
-                || o.Order_date <= Convert.ToDateTime(_secondDate.Text)
-                || o.Date_of_completion <= Convert.ToDateTime(_secondDate.Text)).ToList();
+                Where(o => (o.Order_date >= firstdate.Date
+                && o.Order_date <= secondDate.Date)
+                || (o.Date_of_completion >= firstdate.Date 
+                && o.Date_of_completion <= secondDate.Date)).ToList();
             foreach (var order in orders)
             {
                 if (order.OrderLifeCycleID == firstStage)
