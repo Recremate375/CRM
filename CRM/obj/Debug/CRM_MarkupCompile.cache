@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\projects\CRM\CRM\App.xaml
-91897501128
+12-1534384268
 2-524023745
-24-529620841
-19-300524457
-AllOrdersWindow.xaml;ClientsWindow.xaml;EditElement.xaml;MainWindow.xaml;PersonalOfficeWindow.xaml;AddElement.xaml;ProductsWindow.xaml;RegistrationWindow.xaml;StatisticsWindow.xaml;
+28-96031287
+21964986937
+AllOrdersWindow.xaml;ChangePasswordWindow.xaml;ClientAddWindow.xaml;ClientsWindow.xaml;EditElement.xaml;MainWindow.xaml;PersonalOfficeWindow.xaml;AddElement.xaml;ProductEditWindow.xaml;ProductsWindow.xaml;RegistrationWindow.xaml;StatisticsWindow.xaml;
 
 False
 

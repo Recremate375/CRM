@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище OrdersdbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище OrdersdbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Client ID" />
@@ -24,6 +24,13 @@
           <Property Name="DepartmentId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="OrderLifeCycle">
+          <Key>
+            <PropertyRef Name="OrderLifeCycleID" />
+          </Key>
+          <Property Name="OrderLifeCycleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="Order ID" />
@@ -37,6 +44,7 @@
           <Property Name="Date of completion" Type="date" />
           <Property Name="Order Status" Type="text" />
           <Property Name="Comment" Type="text" />
+          <Property Name="OrderLifeCycleID" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -98,6 +106,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_OrderLifeCycle">
+          <End Role="OrderLifeCycle" Type="Self.OrderLifeCycle" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderLifeCycle">
+              <PropertyRef Name="OrderLifeCycleID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderLifeCycleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -125,6 +145,7 @@
         <EntityContainer Name="Хранилище OrdersdbModelContainer">
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLifeCycle" EntityType="Self.OrderLifeCycle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
@@ -138,6 +159,10 @@
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_OrderLifeCycle" Association="Self.FK_Orders_OrderLifeCycle">
+            <End Role="OrderLifeCycle" EntitySet="OrderLifeCycle" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_Products" Association="Self.FK_Orders_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Orders" EntitySet="Orders" />
@@ -147,8 +172,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrdersdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -190,6 +214,8 @@
           <NavigationProperty Name="Clients" Relationship="Self.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
           <NavigationProperty Name="Departments" Relationship="Self.FK_Orders_Departments" FromRole="Orders" ToRole="Departments" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Orders_Products" FromRole="Orders" ToRole="Products" />
+          <Property Name="OrderLifeCycleID" Type="Guid" />
+          <NavigationProperty Name="OrderLifeCycle" Relationship="OrdersdbModel.FK_Orders_OrderLifeCycle" FromRole="Orders" ToRole="OrderLifeCycle" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -301,7 +327,32 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="OrderLifeCycle" EntityType="OrdersdbModel.OrderLifeCycle" />
+          <AssociationSet Name="FK_Orders_OrderLifeCycle" Association="OrdersdbModel.FK_Orders_OrderLifeCycle">
+            <End Role="OrderLifeCycle" EntitySet="OrderLifeCycle" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="OrderLifeCycle">
+          <Key>
+            <PropertyRef Name="OrderLifeCycleID" />
+          </Key>
+          <Property Name="OrderLifeCycleID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="OrdersdbModel.FK_Orders_OrderLifeCycle" FromRole="OrderLifeCycle" ToRole="Orders" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Orders_OrderLifeCycle">
+          <End Type="OrdersdbModel.OrderLifeCycle" Role="OrderLifeCycle" Multiplicity="0..1" />
+          <End Type="OrdersdbModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderLifeCycle">
+              <PropertyRef Name="OrderLifeCycleID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderLifeCycleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -332,6 +383,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="OrdersdbModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderLifeCycleID" ColumnName="OrderLifeCycleID" />
                 <ScalarProperty Name="Order_ID" ColumnName="Order ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product ID" />
                 <ScalarProperty Name="Production_amount" ColumnName="Production amount" />
@@ -381,6 +433,14 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Userdepartament" ColumnName="Userdepartament" />
                 <ScalarProperty Name="Userposition" ColumnName="Userposition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLifeCycle">
+            <EntityTypeMapping TypeName="OrdersdbModel.OrderLifeCycle">
+              <MappingFragment StoreEntitySet="OrderLifeCycle">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrderLifeCycleID" ColumnName="OrderLifeCycleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

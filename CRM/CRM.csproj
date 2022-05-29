@@ -45,12 +45,17 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,6 +77,12 @@
     <Compile Include="AllOrdersWindow.xaml.cs">
       <DependentUpon>AllOrdersWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientAddWindow.xaml.cs">
+      <DependentUpon>ClientAddWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Clients.cs">
       <DependentUpon>OrdersModel.tt</DependentUpon>
     </Compile>
@@ -84,6 +95,9 @@
     </Compile>
     <Compile Include="EditElement.xaml.cs">
       <DependentUpon>EditElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderLifeCycle.cs">
+      <DependentUpon>OrdersModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrdersModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -105,6 +119,9 @@
     </Compile>
     <Compile Include="AddElement.xaml.cs">
       <DependentUpon>AddElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductEditWindow.xaml.cs">
+      <DependentUpon>ProductEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Products.cs">
       <DependentUpon>OrdersModel.tt</DependentUpon>
@@ -128,6 +145,14 @@
       <DependentUpon>OrdersModel.tt</DependentUpon>
     </Compile>
     <Page Include="AllOrdersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

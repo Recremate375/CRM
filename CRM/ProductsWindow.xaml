@@ -40,7 +40,7 @@
             <Button x:Name="Autorization" Click="Authorization_Click" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Личный кабинет" Background="SteelBlue" BorderBrush="SteelBlue"/>
             <Button Click="Exit_Click" Background="SteelBlue" BorderBrush="SteelBlue" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Выход"/>
         </Grid>
-        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Заказы"/>
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Content="Продукция"/>
         <DataGrid x:Name="dgOrders" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="SkyBlue"
                   AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
@@ -48,5 +48,6 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding Product_ID}" Width="0.6*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Grid.Column="1" Grid.Row="5" Margin="15,10" Content="Добавить продукцию" Click="AddProducts_Click"/>
     </Grid>
 </Window>

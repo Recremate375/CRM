@@ -19,6 +19,13 @@
     <Property Name="DepartmentId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="OrderLifeCycle">
+    <Key>
+      <PropertyRef Name="OrderLifeCycleID" />
+    </Key>
+    <Property Name="OrderLifeCycleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Orders">
     <Key>
       <PropertyRef Name="Order ID" />
@@ -32,6 +39,7 @@
     <Property Name="Date of completion" Type="date" />
     <Property Name="Order Status" Type="text" />
     <Property Name="Comment" Type="text" />
+    <Property Name="OrderLifeCycleID" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -93,6 +101,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Orders_OrderLifeCycle">
+    <End Role="OrderLifeCycle" Type="Self.OrderLifeCycle" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderLifeCycle">
+        <PropertyRef Name="OrderLifeCycleID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="OrderLifeCycleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Orders_Products">
     <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -120,6 +140,7 @@
   <EntityContainer Name="Хранилище OrdersdbModelContainer">
     <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderLifeCycle" EntityType="Self.OrderLifeCycle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
@@ -131,6 +152,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Orders_Departments" Association="Self.FK_Orders_Departments">
       <End Role="Departments" EntitySet="Departments" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_OrderLifeCycle" Association="Self.FK_Orders_OrderLifeCycle">
+      <End Role="OrderLifeCycle" EntitySet="OrderLifeCycle" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_Orders_Products" Association="Self.FK_Orders_Products">

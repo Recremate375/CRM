@@ -24,23 +24,10 @@ namespace CRM
     public partial class MainWindow : Window
     {
         public MainWindow mainWindow;
+        DataBase _dataBase = new DataBase();
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        public DataTable Select(string selectSQL)
-        {
-            DataTable dataTable = new DataTable("dataBase");
-            //server - сервер самой базы данных, DataBase - имя БД, TrustedConnection - безопасное подключение
-            SqlConnection sqlConnection = new SqlConnection("server=DESKTOP-MKHVCVP;Trusted_Connection=Yes;DataBase=Ordersdb;");
-            sqlConnection.Open();
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = selectSQL;
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            sqlDataAdapter.Fill(dataTable);
-            sqlConnection.Close();
-            return dataTable;
         }
         private void SingInClick(object sender, RoutedEventArgs e)
         {
@@ -48,15 +35,29 @@ namespace CRM
             {
                 if (password.Password.Length > 0)
                 {
-                    DataTable dt_user = Select("SELECT * FROM [dbo].[Users] WHERE [UserLogin] = '" +
-                        textBox_login.Text + "' AND [UserPassword] = '" + password.Password + "'");
-                    if (dt_user.Rows.Count > 0)
+                    string findUserString = $"Select * from [dbo].[Users] Where [UserLogin] = '{textBox_login.Text}' and [UserPassword] = '{password.Password}'";
+                    SqlCommand sqlCommand = new SqlCommand(findUserString, _dataBase.getConnection());
+                    _dataBase.openConnection();
+                    SqlDataReader usersDataReader = sqlCommand.ExecuteReader();
+                    int count = 0;
+                    string login = "";
+                    string userPassword = "";
+                    while (usersDataReader.Read())
                     {
-                        AllOrdersWindow allOrdersWindow = new AllOrdersWindow();
-                        allOrdersWindow.Show();
+                        login = usersDataReader.GetString(0);
+                        userPassword = usersDataReader.GetString(1);
+                        count++;
+                    }
+                    if (count != 0)
+                    {
+                        PersonalOfficeWindow personalOfficeWindow = new PersonalOfficeWindow(login, userPassword);
+                        _dataBase.closeConnection();
+                        personalOfficeWindow.Show();
                         this.Close();
                     }
-                    else MessageBox.Show("Пользователь не найден");
+                    else MessageBox.Show("Пользователь не найден!");
+                    _dataBase.closeConnection();
+
                 }
                 else MessageBox.Show("Введите пароль");
             }

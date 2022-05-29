@@ -22,8 +22,10 @@ namespace CRM
         }
         public static OrdersdbEntities GetContext()
         {
-            if( _context == null )
+            if (_context == null)
+            {
                 _context = new OrdersdbEntities();
+            }
             return _context;
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -38,5 +40,6 @@ namespace CRM
         public virtual DbSet<Reports> Reports { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<OrderLifeCycle> OrderLifeCycle { get; set; }
     }
 }

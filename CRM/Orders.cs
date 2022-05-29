@@ -23,9 +23,11 @@ namespace CRM
         public Nullable<System.DateTime> Date_of_completion { get; set; }
         public string Order_Status { get; set; }
         public string Comment { get; set; }
+        public Nullable<System.Guid> OrderLifeCycleID { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual Departments Departments { get; set; }
         public virtual Products Products { get; set; }
+        public virtual OrderLifeCycle OrderLifeCycle { get; set; }
     }
 }

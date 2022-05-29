@@ -43,7 +43,9 @@ namespace CRM
         }
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.Show();
+            this.Close();
         }
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -59,6 +61,13 @@ namespace CRM
         {
             this.Close();
             return;
+        }
+
+        private void EditClient_Click(object sender, RoutedEventArgs e)
+        {
+            ClientAddWindow clientAddWindow = new ClientAddWindow();
+            clientAddWindow.Show();
+            this.Close();
         }
     }
 }

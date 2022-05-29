@@ -26,7 +26,43 @@ namespace CRM
 
         private void Statistic_Click(object sender, RoutedEventArgs e)
         {
+            int numberOfAdded = 0;
+            int numberOfWorking = 0;
+            int numberOfEnded = 0;
 
+            Guid firstStage = new Guid(), secondStage = new Guid(), thirdStage = new Guid();
+            var list = OrdersdbEntities.GetContext().OrderLifeCycle.Where(o => o.Name == "Добавлен").ToList();
+            foreach (var item in list)
+                firstStage = item.OrderLifeCycleID;
+            var list1 = OrdersdbEntities.GetContext().OrderLifeCycle.Where(o => o.Name == "Принят к исполнению").ToList();
+            foreach(var item in list1)
+                secondStage = item.OrderLifeCycleID;
+            var list2 = OrdersdbEntities.GetContext().OrderLifeCycle.Where(o => o.Name == "Завершён").ToList();
+            foreach(var item in list2)
+                thirdStage = item.OrderLifeCycleID;
+            var orders = OrdersdbEntities.GetContext().Orders.
+                Where(o => o.Order_date >= Convert.ToDateTime(_firstDate.Text) 
+                || o.Date_of_completion >= Convert.ToDateTime(_firstDate.Text)
+                || o.Order_date <= Convert.ToDateTime(_secondDate.Text)
+                || o.Date_of_completion <= Convert.ToDateTime(_secondDate.Text)).ToList();
+            foreach (var order in orders)
+            {
+                if (order.OrderLifeCycleID == firstStage)
+                {
+                    numberOfAdded++;
+                }
+                if (order.OrderLifeCycleID == secondStage)
+                {
+                    numberOfWorking++;
+                }
+                if (order.OrderLifeCycleID == thirdStage)
+                {
+                    numberOfEnded++;
+                }
+            }
+            _edit.Text = numberOfAdded.ToString();
+            _recd.Text = numberOfWorking.ToString();
+            _completed.Text = numberOfEnded.ToString();
         }
 
         private void AllOrders_Click(object sender, RoutedEventArgs e)

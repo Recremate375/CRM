@@ -38,7 +38,9 @@ namespace CRM
         }
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.Show();
+            this.Close();
         }
         private void Authorization_Click(object sender, RoutedEventArgs e)
         {
@@ -61,6 +63,13 @@ namespace CRM
         {
             this.Close();
             return;
+        }
+
+        private void AddProducts_Click(object sender, RoutedEventArgs e)
+        {
+            ProductEditWindow productEditWindow = new ProductEditWindow();
+            productEditWindow.Show();
+            this.Close();
         }
     }
 }

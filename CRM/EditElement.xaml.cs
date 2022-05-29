@@ -21,17 +21,20 @@ namespace CRM
     public partial class EditElement : Window
     {
         public Orders _orders = new Orders();
-
+        DataBase _dataBase = new DataBase();
+        Guid OrderID = new Guid();
         public EditElement(Orders orders)
         {
             InitializeComponent();
             if (orders != null)
             {
                 _orders = orders;
+                OrderID = orders.Order_ID;
             }
-            DataContext = _orders;
+            DataContext = orders;
             _productType.ItemsSource = OrdersdbEntities.GetContext().Products.ToList();
             _departament.ItemsSource = OrdersdbEntities.GetContext().Departments.ToList();
+            _lifecycle.ItemsSource = OrdersdbEntities.GetContext().OrderLifeCycle.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,6 +57,19 @@ namespace CRM
                 MessageBox.Show(errors.ToString());
                 return;
             }
+            Guid orderLifeGuid = new Guid();
+            var lifeCycle = OrdersdbEntities.GetContext().OrderLifeCycle.Where(o => o.Name == _lifecycle.Text.ToString()).ToList();
+            foreach (var cycle in lifeCycle)
+            {
+                orderLifeGuid = cycle.OrderLifeCycleID;
+            }
+
+            int productionAmount = Convert.ToInt32(_productionAmount.Text.ToString());
+            string updateOrders = $"Update [dbo].[Orders] set [OrderLifeCycleID] = '{orderLifeGuid}' Where [Order ID] = '{OrderID}'";
+            SqlCommand sqlCommand = new SqlCommand(updateOrders, _dataBase.getConnection());
+            _dataBase.openConnection();
+            if(sqlCommand.ExecuteNonQuery() == 1) { _dataBase.closeConnection(); }
+            _dataBase.closeConnection();
             try
             {
                 OrdersdbEntities.GetContext().SaveChanges();

@@ -56,3 +56,9 @@ D:\projects\CRM\CRM\obj\Debug\ClientsWindow.g.cs
 D:\projects\CRM\CRM\obj\Debug\ClientsWindow.baml
 D:\projects\CRM\CRM\obj\Debug\StatisticsWindow.g.cs
 D:\projects\CRM\CRM\obj\Debug\StatisticsWindow.baml
+D:\projects\CRM\CRM\obj\Debug\ProductEditWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\ProductEditWindow.baml
+D:\projects\CRM\CRM\obj\Debug\ClientAddWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\ClientAddWindow.baml
+D:\projects\CRM\CRM\obj\Debug\ChangePasswordWindow.g.cs
+D:\projects\CRM\CRM\obj\Debug\ChangePasswordWindow.baml

@@ -25,6 +25,7 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="OrdersdbModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderLifeCycleID" ColumnName="OrderLifeCycleID" />
           <ScalarProperty Name="Order_ID" ColumnName="Order ID" />
           <ScalarProperty Name="Product_ID" ColumnName="Product ID" />
           <ScalarProperty Name="Production_amount" ColumnName="Production amount" />
@@ -74,6 +75,14 @@
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="Userdepartament" ColumnName="Userdepartament" />
           <ScalarProperty Name="Userposition" ColumnName="Userposition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderLifeCycle">
+      <EntityTypeMapping TypeName="OrdersdbModel.OrderLifeCycle">
+        <MappingFragment StoreEntitySet="OrderLifeCycle">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OrderLifeCycleID" ColumnName="OrderLifeCycleID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

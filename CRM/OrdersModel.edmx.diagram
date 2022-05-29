@@ -16,6 +16,8 @@
         <AssociationConnector Association="OrdersdbModel.FK_Orders_Departments" ManuallyRouted="false" />
         <AssociationConnector Association="OrdersdbModel.FK_Users_Departments" ManuallyRouted="false" />
         <AssociationConnector Association="OrdersdbModel.FK_Orders_Products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OrdersdbModel.OrderLifeCycle" Width="1.5" PointX="7.75" PointY="4.125" />
+        <AssociationConnector Association="OrdersdbModel.FK_Orders_OrderLifeCycle" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

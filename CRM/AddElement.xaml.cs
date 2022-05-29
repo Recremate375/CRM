@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CRM
 {
@@ -28,6 +18,7 @@ namespace CRM
             DataContext = _orders;
             _productType.ItemsSource = OrdersdbEntities.GetContext().Products.ToList();
             _departament.ItemsSource = OrdersdbEntities.GetContext().Departments.ToList();
+            _lifeCycle.ItemsSource = OrdersdbEntities.GetContext().OrderLifeCycle.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -64,6 +55,18 @@ namespace CRM
                         _dataBase.closeConnection();
                         if (_orgName.Text.Length > 0)
                         {
+                            string lifecyclestring = $"Select * from [dbo].[OrderLifeCycle] Where [Name]= '{_lifeCycle.Text}'";
+                            SqlCommand findLifeCycle = new SqlCommand(lifecyclestring, _dataBase.getConnection());
+                            _dataBase.openConnection();
+                            SqlDataReader sqlDataReader1 = findLifeCycle.ExecuteReader();
+                            int count1 = 0;
+                            Guid lifeCycleID = new Guid();
+                            while (sqlDataReader1.Read())
+                            {
+                                lifeCycleID = sqlDataReader1.GetGuid(0);
+                                count1++;
+                            }
+                            _dataBase.closeConnection();
                             if (_contact.Text.Length > 0)
                             {
                                 string insertContactInformation = $"insert into [dbo].[Clients] ([Client ID], [Client Name], [FIO], [Contact Number]," +
@@ -87,13 +90,15 @@ namespace CRM
                                 _dataBase.closeConnection();
                                 if (_address.Text.Length > 0)
                                 {
-                                    string addOrdersString = $"insert into [dbo].[Orders] ([Order ID], [Product ID], [Client ID], [Departament ID], [Order date], [Date of completion], [Production amount])" +
-                                        $" values(NEWID(), '{productsId}', '{contactId}', '{departmentId}', '{_orderData}', '{_completedData}', '{_productionAmount}')";
+                                    var productionAmount = Convert.ToInt32(_productionAmount.Text);
+                                    string addOrdersString = $"insert into [dbo].[Orders] ([Order ID], [Product ID], [Client ID], [Departament ID], [Order date], [Date of completion], [Production amount], [OrderLifeCycleID])" +
+                                        $" values(NEWID(), '{productsId}', '{contactId}', '{departmentId}', '{_orderData}', '{_completedData}', '{productionAmount}', '{lifeCycleID}')";
                                     SqlCommand command = new SqlCommand(addOrdersString, _dataBase.getConnection());
                                     _dataBase.openConnection();
                                     if (command.ExecuteNonQuery() == 1)
                                     {
                                         MessageBox.Show("Заказ успешно добавлен!");
+                                        _dataBase.closeConnection();
                                         AllOrdersWindow allOrdersWindow = new AllOrdersWindow();
                                         allOrdersWindow.Show();
                                         this.Close();

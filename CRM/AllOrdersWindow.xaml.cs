@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Data.SqlClient;
 using System.Windows.Controls;
+using Microsoft.Office.Interop.Word;
 
 namespace CRM
 {
 
-    public partial class AllOrdersWindow : Window
+    public partial class AllOrdersWindow : System.Windows.Window
     {
         public AllOrdersWindow()
         {
@@ -46,9 +47,8 @@ namespace CRM
         {
             if (Visibility == Visibility.Visible)
             {
-                OrdersdbEntities.GetContext().ChangeTracker.Entries().ToList().
-                    ForEach(p => p.Reload());
-                dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList(); 
+                OrdersdbEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(o => o.Reload());
+                dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList();
             }
         }
         private void Products_Click(object sender, RoutedEventArgs e)
@@ -70,5 +70,18 @@ namespace CRM
             return;
         }
 
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statistics = new StatisticsWindow();
+            statistics.Show();
+            this.Close();
+        }
+
+        private void CreateDocxFile(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Office.Interop.Word.Application wordApplication =
+                new Microsoft.Office.Interop.Word.Application();
+
+        }
     }
 }

@@ -37,20 +37,20 @@
             <Button Grid.Column="0" Grid.Row="0" Content="Все заказы" Background="SteelBlue"/>
             <Button Grid.Column="0" Grid.Row="1" Content="Продукция" Background="SteelBlue" Click="Products_Click"/>
             <Button Grid.Column="0" Grid.Row="2" Content="Заказчики" Background="SteelBlue" Click="Clients_Click"/>
-            <Button Grid.Column="0" Grid.Row="3" Content="Статистика" Background="SteelBlue"/>
+            <Button Grid.Column="0" Grid.Row="3" Content="Статистика" Background="SteelBlue" Click="Statistics_Click"/>
             <Button x:Name="Autorization" Click="Autorization_Click" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Личный кабинет" Background="SteelBlue" BorderBrush="SteelBlue"/>
             <Button Click="Exit_Click" Background="SteelBlue" BorderBrush="SteelBlue" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Выход"/>
         </Grid>
         <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Content="Заказы"/>
         <DataGrid x:Name="dgOrders" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="SkyBlue"
-                  AutoGenerateColumns="False" IsReadOnly="True">
+                  AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№"/>
                 <DataGridTextColumn Header="Продукция" x:Name="_products" Binding="{Binding Products.Product_Type}"/>
                 <DataGridTextColumn Header="Заказчик" x:Name="_client" Width="0.4*" Binding="{Binding Clients.FIO}"/>
                 <DataGridTextColumn Header="Дата заказа" x:Name="_orderDate" Binding="{Binding Order_date}"/>
                 <DataGridTextColumn Header="Отдел" x:Name="_department" Width="0.4*" Binding="{Binding Departments.Name}"/>
                 <DataGridTextColumn Header="Объём производства" x:Name="_amount" Binding="{Binding Production_amount}"/>
+                <DataGridTextColumn Header="Статус заказа" x:Name="_lifeCycle" Width="0.68*" Binding="{Binding OrderLifeCycle.Name}"/>
                 <DataGridTextColumn Header="Комментарий" Width="*" Binding="{Binding Comment}" IsReadOnly="False"/>
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -62,7 +62,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.RowSpan="2" Grid.Column="1" Grid.Row="5" Height="40" Width="140" Content="Добавить заказ" Click="Add_Order_Click"/>
-        <Button Grid.RowSpan="2" Grid.Column="2" Grid.Row="5" Height="40" Width="140" Content="Получить отчёт" />
+        <Button Grid.RowSpan="2" Grid.Column="2" Grid.Row="5" Height="40" Width="140" Content="Получить отчёт" Click="CreateDocxFile"/>
         <Button Grid.RowSpan="2" Grid.Column="3" Grid.Row="5" Height="40" Width="140" Content="Посмотреть статистику" />
     </Grid>
 </Window>
