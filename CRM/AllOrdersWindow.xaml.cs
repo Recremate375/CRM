@@ -7,6 +7,7 @@ using System.Windows;
 using System.Data.SqlClient;
 using System.Windows.Controls;
 using Microsoft.Office.Interop.Word;
+using System.Windows.Threading;
 
 namespace CRM
 {
@@ -33,23 +34,34 @@ namespace CRM
         {
             AddElement addElement = new AddElement();
             addElement.Show();
-            this.Close();
         }
-
-        private void BtnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            EditElement changeElement = new EditElement((sender as Button).DataContext as Orders);
-            changeElement.Show();
-            this.Close();
-        }
-
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (Visibility == Visibility.Visible)
-            {
-                OrdersdbEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(o => o.Reload());
-                dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList();
-            }
+             try
+             {
+                 RebindData();
+                 SetTimer();
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show(ex.ToString());
+             }
+        }
+        protected void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            RebindData();
+        }
+        private void RebindData()
+        {
+            OrdersdbEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(o => o.Reload());
+            dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList();
+        }
+        private void SetTimer()
+        {
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 15);
+            dispatcherTimer.Start();
         }
         private void Products_Click(object sender, RoutedEventArgs e)
         {
@@ -77,11 +89,39 @@ namespace CRM
             this.Close();
         }
 
-        private void CreateDocxFile(object sender, RoutedEventArgs e)
+        private void Delete_Order_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Office.Interop.Word.Application wordApplication =
-                new Microsoft.Office.Interop.Word.Application();
+            var ordersToRemove = dgOrders.SelectedItems.Cast<Orders>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {ordersToRemove.Count()} элементов?", "Внимание", 
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    OrdersdbEntities.GetContext().Orders.RemoveRange(ordersToRemove);
+                    OrdersdbEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    dgOrders.ItemsSource = OrdersdbEntities.GetContext().Orders.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
+
+        private void Change_Order_Click(object sender, RoutedEventArgs e)
+        {
+            var orderToChange = dgOrders.SelectedItem;
+            if (orderToChange != null)
+            {
+                EditElement changeOrder = new EditElement((Orders)orderToChange);
+                changeOrder.Show();
+            }
+            else
+            {
+                MessageBox.Show("Выберите заказ, который хотите изменить");
+            }
         }
     }
 }

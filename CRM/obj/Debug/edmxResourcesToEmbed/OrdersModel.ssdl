@@ -47,6 +47,7 @@
     </Key>
     <Property Name="Product ID" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Product Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Reports">
     <Key>

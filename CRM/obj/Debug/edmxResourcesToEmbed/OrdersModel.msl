@@ -41,6 +41,7 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="OrdersdbModel.Products">
         <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Product_ID" ColumnName="Product ID" />
           <ScalarProperty Name="Product_Type" ColumnName="Product Type" />
         </MappingFragment>

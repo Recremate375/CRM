@@ -52,6 +52,7 @@
           </Key>
           <Property Name="Product ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Product Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -224,6 +225,7 @@
           <Property Name="Product_ID" Type="Guid" Nullable="false" />
           <Property Name="Product_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -399,6 +401,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="OrdersdbModel.Products">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product ID" />
                 <ScalarProperty Name="Product_Type" ColumnName="Product Type" />
               </MappingFragment>

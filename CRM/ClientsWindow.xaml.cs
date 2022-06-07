@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CRM
 {
@@ -49,14 +50,32 @@ namespace CRM
         }
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (Visibility == Visibility.Visible)
+            try
             {
-                OrdersdbEntities.GetContext().ChangeTracker.Entries().ToList().
-                    ForEach(p => p.Reload());
-                dgOrders.ItemsSource = OrdersdbEntities.GetContext().Clients.ToList();
+                RebindData();
+                SetTimer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
-
+        protected void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            RebindData();
+        }
+        private void RebindData()
+        {
+            OrdersdbEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(c => c.Reload());
+            dgOrders.ItemsSource = OrdersdbEntities.GetContext().Clients.ToList();
+        }
+        private void SetTimer()
+        {
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 15);
+            dispatcherTimer.Start();
+        }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -68,6 +87,34 @@ namespace CRM
             ClientAddWindow clientAddWindow = new ClientAddWindow();
             clientAddWindow.Show();
             this.Close();
+        }
+
+        private void ShowClientInformation_Click(object sender, RoutedEventArgs e)
+        {
+            var clientToShow = dgOrders.SelectedItem;
+            if (clientToShow != null)
+            {
+                ClientInformationWindow informationWindow = new ClientInformationWindow((Clients)clientToShow);
+                informationWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Выберите клиента, о котором хотите увидеть информацию");
+            }
+        }
+
+        private void ChangeClient_Click(object sender, RoutedEventArgs e)
+        {
+            var clientToChange = dgOrders.SelectedItem;
+            if (clientToChange != null)
+            {
+                ChangeClientWindow changeWindow = new ChangeClientWindow((Clients)clientToChange);
+                changeWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Выберите клиента, информацию о котором вы хотите изменить");
+            }
         }
     }
 }

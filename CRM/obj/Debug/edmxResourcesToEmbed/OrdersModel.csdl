@@ -48,6 +48,7 @@
     <Property Name="Product_ID" Type="Guid" Nullable="false" />
     <Property Name="Product_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Reports">
     <Key>

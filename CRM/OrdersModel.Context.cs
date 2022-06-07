@@ -20,6 +20,7 @@ namespace CRM
             : base("name=OrdersdbEntities")
         {
         }
+
         public static OrdersdbEntities GetContext()
         {
             if (_context == null)

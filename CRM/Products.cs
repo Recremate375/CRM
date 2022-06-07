@@ -22,6 +22,7 @@ namespace CRM
     
         public System.Guid Product_ID { get; set; }
         public string Product_Type { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }

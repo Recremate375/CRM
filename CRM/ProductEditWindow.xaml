@@ -5,18 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM"
         mc:Ignorable="d"
-        Title="Добавление продукта" Height="300" Width="350" Background="SkyBlue">
+        Title="Добавление продукта" Height="400" Width="500" Background="SkyBlue">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition/>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Добавить" Height="35" Width="150" FontSize="15" Click="AddNewProduct_Click"/>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Название продукции:" FontSize="14"/>
-        <TextBox Text="{Binding Product_Type}" x:Name="_productType" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="150"/>
+        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Добавление продукции" FontSize="15"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Добавить" Height="35" Width="150" FontSize="15" Click="AddNewProduct_Click"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Text="Название продукции:" FontSize="15"/>
+        <TextBox Text="{Binding Product_Type}" Grid.Row="1" x:Name="_productType" Grid.Column="1" Margin="10,20"/>
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Описание продукции:" FontSize="15"/>
+        <TextBox Text="{Binding Description}" x:Name="_productDescription" Grid.Row="2" Grid.Column="1" Margin="10, 20"/>
     </Grid>
 </Window>

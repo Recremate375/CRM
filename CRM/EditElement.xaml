@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM"
         mc:Ignorable="d"
-        Title="Добавление заказа" Height="450" Width="800" Background="SkyBlue">
+        Title="Добавление заказа" Height="450" Width="800" Background="SkyBlue" IsVisibleChanged="Window_IsVisibleChanged">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>
@@ -27,11 +27,11 @@
         <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Content="Информация о заказчике:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <!-- Информация о заказе-->
         <Label  Grid.Row="1" Grid.Column="0" Content="Тип продукции:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <ComboBox SelectedItem="{Binding Path = Product_ID}" x:Name="_productType" Grid.Row="1" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" DisplayMemberPath="Product_Type" Margin="10"/>
+        <ComboBox SelectedItem="{Binding Products.Product_Type}" x:Name="_productType" Grid.Row="1" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" DisplayMemberPath="Product_Type" Margin="10"/>
         <Label  Grid.Row="2" Grid.Column="0" Content="Дата заказа:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding Path = Order_date}" x:Name="_orderData" Grid.Row="2" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
         <Label  Grid.Row="3" Grid.Column="0" Content="Отдел:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <ComboBox SelectedItem="{Binding Path = Departament_ID}"  x:Name="_departament" Grid.Row="3" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" DisplayMemberPath="Name" Margin="10"/>
+        <ComboBox SelectedItem="{Binding Departament.Name}"  x:Name="_departament" Grid.Row="3" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" DisplayMemberPath="Name" Margin="10"/>
         <Label  Grid.Row="4" Grid.Column="0" Content="Дата выполнения:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding Date_of_completion}" x:Name="_completedData" Grid.Row="4" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
         <Label Grid.Row="5" Content="Объём продукции" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>

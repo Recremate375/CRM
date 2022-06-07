@@ -41,21 +41,18 @@ namespace CRM
                 return;
             }
 
-            string insertProduct = $"insert into [dbo].[Products] ([Product ID], [Product Type]) " +
-                $"values(NEWID(), '{_productType.Text}')";
+            string insertProduct = $"insert into [dbo].[Products] ([Product ID], [Product Type], [Description]) " +
+                $"values(NEWID(), '{_productType.Text}', '{_productDescription.Text}')";
             SqlCommand sqlCommand = new SqlCommand(insertProduct, _dataBase.getConnection());
             _dataBase.openConnection();
             if(sqlCommand.ExecuteNonQuery() == 1)
             {
                 _dataBase.closeConnection();
                 MessageBox.Show("Продукт успешно добавлен!");
-                ProductsWindow productsWindow = new ProductsWindow();
-                productsWindow.Show();
                 this.Close();
             }
             else
             {
-
                 _dataBase.closeConnection();
             }
         }

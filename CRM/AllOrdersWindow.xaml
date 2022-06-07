@@ -52,17 +52,11 @@
                 <DataGridTextColumn Header="Объём производства" x:Name="_amount" Binding="{Binding Production_amount}"/>
                 <DataGridTextColumn Header="Статус заказа" x:Name="_lifeCycle" Width="0.68*" Binding="{Binding OrderLifeCycle.Name}"/>
                 <DataGridTextColumn Header="Комментарий" Width="*" Binding="{Binding Comment}" IsReadOnly="False"/>
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Редактировать" Name="BtnEdit" Click="BtnEdit_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.RowSpan="2" Grid.Column="1" Grid.Row="5" Height="40" Width="140" Content="Добавить заказ" Click="Add_Order_Click"/>
-        <Button Grid.RowSpan="2" Grid.Column="2" Grid.Row="5" Height="40" Width="140" Content="Получить отчёт" Click="CreateDocxFile"/>
-        <Button Grid.RowSpan="2" Grid.Column="3" Grid.Row="5" Height="40" Width="140" Content="Посмотреть статистику" />
+        <Button Grid.RowSpan="2" Grid.Column="2" Grid.Row="5" Height="40" Width="140" Content="Удалить заказ" Click="Delete_Order_Click"/>
+        <Button Grid.RowSpan="2" Grid.Column="3" Grid.Row="5" Height="40" Width="140" Content="Изменить заказ" Click="Change_Order_Click"/>
+        <Button Grid.RowSpan="2" Grid.Column="4" Grid.Row="5" Height="40" Width="140" Content="Посмотреть статистику" />
     </Grid>
 </Window>
