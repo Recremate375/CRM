@@ -19,9 +19,19 @@ namespace CRM
     /// </summary>
     public partial class StatisticsWindow : Window
     {
+        private string login;
+        private string password;
+
         public StatisticsWindow()
         {
             InitializeComponent();
+        }
+
+        public StatisticsWindow(string login, string password)
+        {
+            InitializeComponent();
+            this.login = login;
+            this.password = password;
         }
 
         private void Statistic_Click(object sender, RoutedEventArgs e)
@@ -68,28 +78,28 @@ namespace CRM
 
         private void AllOrders_Click(object sender, RoutedEventArgs e)
         {
-            AllOrdersWindow allOrdersWindow = new AllOrdersWindow();
+            AllOrdersWindow allOrdersWindow = new AllOrdersWindow(login, password);
             allOrdersWindow.Show();
             this.Close();
         }
 
         private void Products_Click(object sender, RoutedEventArgs e)
         {
-            ProductsWindow productsWindow = new ProductsWindow();
+            ProductsWindow productsWindow = new ProductsWindow(login, password);
             productsWindow.Show();
             this.Close();
         }
 
         private void Clients_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
+            ClientsWindow clientsWindow = new ClientsWindow(login, password);
             clientsWindow.Show();
             this.Close();
         }
 
         private void Autorization_Click(object sender, RoutedEventArgs e)
         {
-            PersonalOfficeWindow personalOfficeWindow = new PersonalOfficeWindow();
+            PersonalOfficeWindow personalOfficeWindow = new PersonalOfficeWindow(login, password);
             personalOfficeWindow.Show();
             this.Close();
         }

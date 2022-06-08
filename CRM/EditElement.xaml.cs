@@ -33,13 +33,53 @@ namespace CRM
             }
 
             DataContext = _orders;
-        }
-        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            _productType.ItemsSource = OrdersdbEntities.GetContext().Products.ToList();
-            _productType.SelectedItem = _orders.Products.Product_Type.ToString();
-            _departament.ItemsSource = OrdersdbEntities.GetContext().Departments.ToList();
-            _lifecycle.ItemsSource = OrdersdbEntities.GetContext().OrderLifeCycle.ToList();
+            try
+            {
+                var productList = new List<Products>();
+                var departmentList = new List<Departments>();
+                var orderLifeCycleList = new List<OrderLifeCycle>();
+                productList = OrdersdbEntities.GetContext().Products.ToList();
+                departmentList = OrdersdbEntities.GetContext().Departments.ToList();
+                orderLifeCycleList = OrdersdbEntities.GetContext().OrderLifeCycle.ToList();
+                int productNumber = 0;
+                int departmentNumber = 0;
+                int orderLifeCycleNumber = 0;
+                for (int i = 0; i < productList.Count; i++)
+                {
+                    if (productList[i].Product_ID == _orders.Product_ID)
+                    {
+                        productNumber = i;
+                        break;
+                    }
+                }
+                for (int i = 0; i < departmentList.Count; i++)
+                {
+                    if (departmentList[i].DepartmentId == _orders.Departament_ID)
+                    {
+                        departmentNumber = i;
+                        break;
+                    }
+                }
+                for (int i = 0; i < orderLifeCycleList.Count; i++)
+                {
+                    if (orderLifeCycleList[i].OrderLifeCycleID == _orders.OrderLifeCycleID)
+                    {
+                        orderLifeCycleNumber = i;
+                        break;
+                    }
+                }
+                _productType.ItemsSource = productList;
+                _departament.ItemsSource = departmentList;
+                _lifecycle.ItemsSource = orderLifeCycleList;
+
+                _productType.SelectedIndex = productNumber;
+                _departament.SelectedIndex = departmentNumber;
+                _lifecycle.SelectedIndex = orderLifeCycleNumber;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

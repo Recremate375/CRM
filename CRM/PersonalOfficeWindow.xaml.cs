@@ -59,28 +59,28 @@ namespace CRM
 
         private void AllOrders_Click(object sender, RoutedEventArgs e)
         {
-            AllOrdersWindow allOrdersWindow = new AllOrdersWindow();
+            AllOrdersWindow allOrdersWindow = new AllOrdersWindow(login, password);
             allOrdersWindow.Show();
             this.Close();
         }
 
         private void Products_Click(object sender, RoutedEventArgs e)
         {
-            ProductsWindow productsWindow = new ProductsWindow();
+            ProductsWindow productsWindow = new ProductsWindow(login, password);
             productsWindow.Show();
             this.Close();
         }
 
         private void Clients_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
+            ClientsWindow clientsWindow = new ClientsWindow(login, password);
             clientsWindow.Show();
             this.Close();
         }
 
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            StatisticsWindow statisticsWindow = new StatisticsWindow(login, password);
             statisticsWindow.Show();
             this.Close();
         }

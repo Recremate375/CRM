@@ -20,31 +20,42 @@ namespace CRM
     /// </summary>
     public partial class ClientsWindow : Window
     {
+        private string login;
+        private string password;
+
         public ClientsWindow()
         {
             InitializeComponent();
         }
+
+        public ClientsWindow(string login, string password)
+        {
+            InitializeComponent();
+            this.login = login;
+            this.password = password;
+        }
+
         private void AllOrders_Click(object sender, RoutedEventArgs e)
         {
-            AllOrdersWindow allOrdersWindow = new AllOrdersWindow();
+            AllOrdersWindow allOrdersWindow = new AllOrdersWindow(login, password);
             allOrdersWindow.Show();
             this.Close();
         }
         private void Authorization_Click(object sender, RoutedEventArgs e)
         {
-            PersonalOfficeWindow personalOffice = new PersonalOfficeWindow();
+            PersonalOfficeWindow personalOffice = new PersonalOfficeWindow(login, password);
             personalOffice.Show();
             this.Close();
         }
         private void Products_Click(object sender, RoutedEventArgs e)
         {
-            ProductsWindow productsWindow = new ProductsWindow();
+            ProductsWindow productsWindow = new ProductsWindow(login, password);
             productsWindow.Show();
             this.Close();
         }
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            StatisticsWindow statisticsWindow = new StatisticsWindow(login, password);
             statisticsWindow.Show();
             this.Close();
         }
