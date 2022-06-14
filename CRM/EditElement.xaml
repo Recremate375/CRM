@@ -1,0 +1,55 @@
+﻿<Window x:Class="CRM.EditElement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM"
+        mc:Ignorable="d"
+        Title="Добавление заказа" Height="450" Width="800" Background="SkyBlue">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Информация о заказе:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Content="Информация о заказчике:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!-- Информация о заказе-->
+        <Label  Grid.Row="1" Grid.Column="0" Content="Тип продукции:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox SelectedItem="{Binding Products.Product_Type}" x:Name="_productType" Grid.Row="1" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" DisplayMemberPath="Product_Type" Margin="10"/>
+        <Label  Grid.Row="2" Grid.Column="0" Content="Дата заказа:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <DatePicker SelectedDate="{Binding Path = Order_date}" x:Name="_orderData" Grid.Row="2" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
+        <Label  Grid.Row="3" Grid.Column="0" Content="Отдел:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox x:Name="_departament" Grid.Row="3" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" DisplayMemberPath="Name" Margin="10"/>
+        <Label  Grid.Row="4" Grid.Column="0" Content="Дата выполнения:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <DatePicker SelectedDate="{Binding Date_of_completion}" x:Name="_completedData" Grid.Row="4" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
+        <Label Grid.Row="5" Content="Объём продукции" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Path=Production_amount}" x:Name="_productionAmount" Grid.Row="5" Grid.Column="1" Width="175" Height="25" HorizontalAlignment="Center" Margin="10"/>
+        <Label Grid.Row="6" Content="Статус заказа" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="6" Grid.Column="1" x:Name="_lifecycle" Width="175" Height="25" HorizontalAlignment="Center" Margin="10" DisplayMemberPath="Name"/>
+        <!-- Информация о заказчике-->
+        <Label Grid.Row="1" Grid.Column="2" FontSize="14.2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Наименование организации:"/>
+        <TextBox Text="{Binding Clients.Client_Name}" x:Name="_orgName" Grid.Row="1" Grid.Column="3" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
+        <Label  Grid.Row="2" Grid.Column="2" Content="Контант:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Clients.FIO}" x:Name="_contact" Grid.Row="2" Grid.Column="3" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
+        <Label  Grid.Row="3" Grid.Column="2" Content="Адрес:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Clients.Client_Address}" x:Name="_address" Grid.Row="3" Grid.Column="3" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
+        <Label  Grid.Row="4" Grid.Column="2" Content="Телефон:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Clients.Contact_Number}" x:Name="_phoneNumber" Grid.Row="4" Grid.Column="3" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
+        <Label  Grid.Row="5" Grid.Column="2" Content="E-mail:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Clients.Contact_Email}" x:Name="_email" Grid.Row="5" Grid.Column="3" Width="175" Height="25" HorizontalAlignment="Right" Margin="10"/>
+        <!-- Кнопка -->
+        <Button Grid.Row="7" Grid.ColumnSpan="4" Width="150" Height="40" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click"/>
+    </Grid>
+</Window>

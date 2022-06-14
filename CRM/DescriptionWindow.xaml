@@ -1,0 +1,27 @@
+﻿<Window x:Class="CRM.DescriptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM"
+        mc:Ignorable="d"
+        Title="Описание продукции" Height="400" Width="500" Background="SkyBlue">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.35*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.45*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Описание продукции" FontSize="16"/>
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Название продукции" FontSize="15"/>
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Описание" FontSize="16"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="20, 15" FontSize="13" Text="{Binding Path=Product_Type}" IsReadOnly="True"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Description}" Margin="20, 6" IsReadOnly="True" FontSize="13"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Вернуться" Width="130" Height="35" FontSize="15" Click="Button_Click"/>
+    </Grid>
+</Window>

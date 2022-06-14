@@ -5,19 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM"
         mc:Ignorable="d"
-        Title="PersonalOfficeWindow" Height="450" Width="800" Background="SkyBlue">
+        Title="PersonalOfficeWindow" Height="600" Width="1000" Background="SkyBlue" IsVisibleChanged="Window_IsVisibleChanged">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.16*"/>
+            <RowDefinition Height="0.16*"/>
+            <RowDefinition Height="0.16*"/>
+            <RowDefinition Height="0.16*"/>
+            <RowDefinition Height="0.16*"/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Background="SteelBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.16*"/>
+                <RowDefinition Height="0.16*"/>
+                <RowDefinition Height="0.16*"/>
+                <RowDefinition Height="0.16*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" Content="Все заказы" Background="SteelBlue" Click="AllOrders_Click"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Продукция" Background="SteelBlue" Click="Products_Click"/>
+            <Button Grid.Column="0" Grid.Row="2" Content="Заказчики" Background="SteelBlue" Click="Clients_Click"/>
+            <Button Grid.Column="0" Grid.Row="3" Content="Статистика" Background="SteelBlue" Click="Statistics_Click"/>
+            <Button x:Name="Autorization" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Личный кабинет" Background="SteelBlue" BorderBrush="SteelBlue"/>
+            <Button Click="Exit_Click" Background="SteelBlue" BorderBrush="SteelBlue" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Выход"/>
+        </Grid>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Content="Личный кабинет"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Логин" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"/>
+        <TextBox x:Name="userLogin" Grid.Column="1" Grid.Row="2" Margin="15,5,15,5"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="ФИО" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"/>
+        <TextBox x:Name="userFIO" Grid.Column="2" Grid.Row="2" Margin="15,5,15,5"/>
+        <Label Grid.Row="1" Grid.Column="3" Content="Отдел" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"/>
+        <TextBox x:Name="userDepartment" Grid.Column="3" Grid.Row="2" Margin="15,5,15,5"/>
+        <Label Grid.Row="1" Grid.Column="4" Content="Позиция" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"/>
+        <TextBox x:Name="userPosition" Grid.Column="4" Grid.Row="2" Margin="15,5,15,5" />
+        <Label Grid.Row="3" Grid.Column="1" Content="Пароль" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"/>
+        <PasswordBox x:Name="userPassword" Grid.Column="1" Grid.Row="4" Margin="15,5,15,5" />
+        <Button Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Изменить пароль" Height="30" Width="170" Click="ChangePass_Click"/>
+        <Button Grid.Row="8" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Сменить аккаунт" Height="30" Width="170" Click="ExitAcc_Click"/>
+
     </Grid>
 </Window>

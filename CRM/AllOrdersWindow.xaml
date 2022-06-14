@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM"
         mc:Ignorable="d"
-        Title="Окно заказов" Height="450" Width="800" Background="SkyBlue">
+        Title="Окно заказов" Height="600" Width="1000" Background="SkyBlue"
+        IsVisibleChanged="Window_IsVisibleChanged">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.8*"/>
@@ -34,27 +35,28 @@
                 <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
             <Button Grid.Column="0" Grid.Row="0" Content="Все заказы" Background="SteelBlue"/>
-            <Button Grid.Column="0" Grid.Row="1" Content="Продукция" Background="SteelBlue"/>
-            <Button Grid.Column="0" Grid.Row="2" Content="Заказчики" Background="SteelBlue"/>
-            <Button Grid.Column="0" Grid.Row="3" Content="Статистика" Background="SteelBlue"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Продукция" Background="SteelBlue" Click="Products_Click"/>
+            <Button Grid.Column="0" Grid.Row="2" Content="Заказчики" Background="SteelBlue" Click="Clients_Click"/>
+            <Button Grid.Column="0" Grid.Row="3" Content="Статистика" Background="SteelBlue" Click="Statistics_Click"/>
             <Button x:Name="Autorization" Click="Autorization_Click" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Личный кабинет" Background="SteelBlue" BorderBrush="SteelBlue"/>
-            <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Выход"/>
+            <Button Click="Exit_Click" Background="SteelBlue" BorderBrush="SteelBlue" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Выход"/>
         </Grid>
-        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Заказы"/>
-        <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="SkyBlue">
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Content="Заказы"/>
+        <DataGrid x:Name="dgOrders" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="SkyBlue"
+                  AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№" x:Name="Number"/>
-                <DataGridTextColumn Header="Продукция" x:Name="Product"/>
-                <DataGridTextColumn Header="Заказчик" Width="0.4*" x:Name="Client"/>
-                <DataGridTextColumn Header="Дата заказа" x:Name="Orders Date"/>
-                <DataGridTextColumn Header="Отдел" Width="0.4*" x:Name="Department"/>
-                <DataGridTextColumn Header="Объём производства" x:Name="ProductAmount"/>
-                <DataGridTextColumn Header="Комментарий" Width="*" x:Name="Comment"/>
+                <DataGridTextColumn Header="Продукция" x:Name="_products" Binding="{Binding Products.Product_Type}"/>
+                <DataGridTextColumn Header="Заказчик" x:Name="_client" Width="0.4*" Binding="{Binding Clients.FIO}"/>
+                <DataGridTextColumn Header="Дата заказа" x:Name="_orderDate" Binding="{Binding Order_date}"/>
+                <DataGridTextColumn Header="Отдел" x:Name="_department" Width="0.4*" Binding="{Binding Departments.Name}"/>
+                <DataGridTextColumn Header="Объём производства" x:Name="_amount" Binding="{Binding Production_amount}"/>
+                <DataGridTextColumn Header="Статус заказа" x:Name="_lifeCycle" Width="0.68*" Binding="{Binding OrderLifeCycle.Name}"/>
+                <DataGridTextColumn Header="Комментарий" Width="*" Binding="{Binding Comment}" IsReadOnly="False"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Column="1" Grid.Row="5" Height="25" Width="135" Content="Добавить заказ" Click="Add_Order_Click"/>
-        <Button Grid.Column="2" Grid.Row="5" Height="25" Width="135" Content="Редактировать заказ" Click="Editing_Order_click" />
-        <Button Grid.Column="1" Grid.Row="6" Height="25" Width="135" Content="Получить отчёт" />
-        <Button Grid.Column="2" Grid.Row="6" Height="25" Width="135" Content="Посмотреть статистику" />
+        <Button Grid.RowSpan="2" Grid.Column="1" Grid.Row="5" Height="40" Width="140" Content="Добавить заказ" Click="Add_Order_Click"/>
+        <Button Grid.RowSpan="2" Grid.Column="2" Grid.Row="5" Height="40" Width="140" Content="Удалить заказ" Click="Delete_Order_Click"/>
+        <Button Grid.RowSpan="2" Grid.Column="3" Grid.Row="5" Height="40" Width="140" Content="Изменить заказ" Click="Change_Order_Click"/>
+        <Button Grid.RowSpan="2" Grid.Column="4" Grid.Row="5" Height="40" Width="140" Content="Получить отчёт" Click="Create_File_Click"/>
     </Grid>
 </Window>
